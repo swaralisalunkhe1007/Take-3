@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us | Department of Science & Technology</title>
+  <link rel="icon" type="image/x-icon" href="https://www.uxdt.nic.in/wp-content/uploads/2020/01/NE_Preview1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background: #f5f6f7; color: #222; }
+    header { background: white; border-bottom: 3px solid #0a6c6c; padding: 12px 5%; }
+    header img { height: 60px; }
+    nav { background: #0a6c6c; padding: 10px 5%; color: white; font-weight: bold; }
+    nav a { color: white; text-decoration: none; margin-right: 20px; }
+
+    .main-container {
+      width: 90%;
+      margin: 30px auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      background: white;
+      padding: 30px;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    h2 { color: #0a6c6c; margin-bottom: 20px; border-bottom: 2px solid #0a6c6c; padding-bottom: 10px; }
+    
+    .contact-info p { margin-bottom: 15px; line-height: 1.6; }
+    .contact-info strong { color: #0a6c6c; }
+
+    /* Form Styling */
+    .contact-form { display: flex; flex-direction: column; }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .contact-form button {
+      background: #0a6c6c;
+      color: white;
+      padding: 12px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .contact-form button:hover { background: #084f4f; }
+
+    /* Map Placeholder */
+    .map-box {
+      margin-top: 20px;
+      height: 300px;
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ccc;
+      overflow: hidden;
+    }
+
+    #form-status {
+      margin-top: 10px;
+      padding: 10px;
+      display: none;
+      border-radius: 4px;
+    }
+    .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="https://dst.gov.in/sites/all/modules/customs/cmf_content/assets/images/dst-logo1.jpg" alt="DST Logo">
+</header>
+
+<nav>
+  <a href="home.html">← Back to Home</a>
+</nav>
+
+<div class="main-container">
+  <div class="contact-info">
+    <h2>Contact Us</h2>
+    <p><strong>Address:</strong><br>
+       Department of Science & Technology,<br>
+       Technology Bhavan, New Mehrauli Road,<br>
+       New Delhi – 110 016.</p>
+    
+    <p><strong>Phone:</strong> +91-11-26567373</p>
+    <p><strong>Email:</strong> dst@nic.in</p>
+
+  <h2>Location Map</h2>
+<div class="map-box">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.078161191955!2d77.18934839999999!3d28.5373703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1df9799afcc5%3A0xa8448eb81b910334!2sTECHNOLOGY%20BHAVAN%2C%20Block%20C%2C%20Qutab%20Institutional%20Area%2C%20New%20Delhi%2C%20Delhi%20110016!5e0!3m2!1sen!2sin!4v1767535239750!5m2!1sen!2sin" 
+  width="600" 
+  height="450" 
+  style="border:0;" 
+  allowfullscreen="" 
+  loading="lazy" 
+  referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+  <div class="form-container">
+    <h2>Send us a Message</h2>
+    <form class="contact-form" id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email Address" required>
+      <input type="text" id="subject" placeholder="Subject">
+      <textarea id="message" rows="5" placeholder="Your Message..." required></textarea>
+      
+      <button type="submit">Submit Message</button>
+      <div id="form-status"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent page reload
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const statusBox = document.getElementById('form-status');
+
+    // Simple validation check
+    if (name.length < 3) {
+      showStatus("Please enter a valid name.", "error");
+      return;
+    }
+
+    // Simulate an API call / Form submission
+    showStatus("Thank you, " + name + "! Your message has been sent successfully.", "success");
+    
+    // Clear the form
+    document.getElementById('contactForm').reset();
+  });
+
+  function showStatus(message, type) {
+    const statusBox = document.getElementById('form-status');
+    statusBox.textContent = message;
+    statusBox.className = type;
+    statusBox.style.display = "block";
+    
+    // Hide message after 5 seconds
+    setTimeout(() => {
+      statusBox.style.display = "none";
+    }, 5000);
+  }
+</script>
+
+</body>
+</html>
